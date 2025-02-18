@@ -1,2 +1,67 @@
-# ubuntu_setup
-Ubuntu Setup Guides
+# Ubuntu 24.04 Setup Guide
+This guide will help you set up your Ubuntu 24.04 system with essential tools, a Python virtual environment, and Git. It also includes steps to automate the activation of your Python environment.
+
+## Update and Upgrade System
+Start by updating and upgrading your system to ensure all packages are up to date.
+```bash
+sudo apt update
+sudo apt upgrade
+```
+## Install Essential Tools
+
+### Install Grub Customizer
+Grub Customizer allows you to customize the GRUB bootloader in case Ubuntu is sharing the disk with a Windows OS or macOS.
+```bash
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+sudo apt install grub-customizer
+sudo grub-customizer
+```
+### Install Google Chrome
+Add the Google Chrome repository and install the browser.
+```bash
+wget -qO - https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome-keyring.gpg
+echo 'deb [signed-by=/usr/share/keyrings/google-chrome-keyring.gpg] https://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt update
+sudo apt install google-chrome-stable
+```
+### Install GIT
+Git is essential for version control.
+```bash
+sudo apt install git
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+## Set Up Python Environment
+
+### Install Python and Pip
+Install Python, Pip, and the `venv` module.
+```bash
+sudo apt install python3 python3-pip python3-venv
+```
+
+### Create and Activate a Python Virtual Environment
+Create a virtual environment named `pe` and activate it.
+```bash
+python3 -m venv pe
+source pe/bin/activate
+```
+### Install Python Packages
+Install essential Python ML packages.
+```bash
+pip install --upgrade numpy scipy pandas scikit-learn matplotlib seaborn torch openai tiktoken
+```
+### Deactivate the Environment
+When you're done, deactivate the environment.
+```bash
+deactivate
+```
+
+### Automate Python Environment Activation
+To automatically activate the `pe` environment when opening a terminal, add the activation command to your `.bashrc` file.
+```bash
+echo 'source ~/pe/bin/activate' >> ~/.bashrc
+```
+Reload the .bashrc file to apply the changes.
+```bash
+source ~/.bashrc
+```
