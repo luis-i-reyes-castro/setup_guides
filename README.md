@@ -30,6 +30,7 @@ Git is essential for version control.
 sudo apt install git
 git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
+git config --global credential.helper store
 ```
 ## Set Up Python Environment
 
@@ -64,4 +65,41 @@ echo 'source ~/pe/bin/activate' >> ~/.bashrc
 Reload the .bashrc file to apply the changes.
 ```bash
 source ~/.bashrc
+```
+
+## Install Cursor
+Cursor is a code editor that can be installed as an AppImage.
+
+### Download and Install Cursor
+Download the Cursor AppImage to the `/Downloads` directory and move it to /opt.
+```bash
+sudo mv ~/Downloads/cursor-0.45.11x86_64.AppImage /opt/cursor
+sudo chmod +x /opt/cursor
+```
+
+### Download a Cursor Icon
+Download a cursor icon as `cursor-icon.png` to the `/Downloads` directory, create a directory for the icon (to avoid overwriting the app), and move it.
+```bash
+sudo mkdir -p /opt/cursor-icons
+sudo mv ~/Downloads/cursor-icon.png /opt/cursor-icons/cursor-icon.png
+```
+
+### Create a Desktop Entry
+Create a `.desktop` file to launch Cursor from the applications menu.
+```bash
+gedit ~/.local/share/applications/cursor.desktop
+```
+Add the following content to the file:
+```ini
+[Desktop Entry]
+Name=Cursor
+Exec=/opt/cursor --no-sandbox
+Icon=/opt/cursor-icons/cursor-icon.png
+Type=Application
+Categories=Development;
+```
+Save the file and make it executable.
+```bash
+chmod +x ~/.local/share/applications/cursor.desktop
+update-desktop-database ~/.local/share/applications
 ```
