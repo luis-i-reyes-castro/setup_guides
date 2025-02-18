@@ -1,5 +1,5 @@
-# Ubuntu 24.04 Setup Guide
-This guide will help you set up your Ubuntu 24.04 system with essential tools, a Python virtual environment, and Git. It also includes steps to automate the activation of your Python environment.
+# Ubuntu Python Developer Setup Guide
+This guide will help you set up your Ubuntu 24.04 system. It assumes you are sharing the disk with a Windows or mac operating system, hence the inclusion of the `grub-customizer`. It installs Google Chrome, GIT, a Python virtual environment, some Python ML packages, and Cursor. It also includes steps to automate the activation of your Python environment.
 
 ## Update and Upgrade System
 Start by updating and upgrading your system to ensure all packages are up to date.
@@ -68,7 +68,7 @@ source ~/.bashrc
 ```
 
 ## Install Cursor
-Cursor is a code editor that can be installed as an AppImage.
+Cursor is a AI IDE that can be installed as an AppImage. It provides a significant productivity boost over non-AI IDEs.
 
 ### Download and Install Cursor
 Download the Cursor AppImage to the `/Downloads` directory and move it to /opt.
