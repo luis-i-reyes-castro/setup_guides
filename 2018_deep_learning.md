@@ -1,4 +1,4 @@
-# 2018 Deep Learning Setup Guide
+# 2018 Ubuntu Deep Learning Setup Guide
 
 This manual contains instructions for setting up a computer with an NVIDIA CUDA-capable video card to run deep learning software. 
 
