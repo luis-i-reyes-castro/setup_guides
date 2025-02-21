@@ -54,6 +54,7 @@ pip install --upgrade numpy scipy pandas scikit-learn matplotlib seaborn pillow 
 Install OpenCV and tesseract OCR.
 ```bash
 sudo apt-get install python3-opencv tesseract-ocr
+pip install opencv-python pytesseract
 ```
 Install other useful packages.
 ```bash
