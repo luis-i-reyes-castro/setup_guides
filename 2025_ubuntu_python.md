@@ -39,10 +39,6 @@ Install Python, Pip, and the `venv` module.
 ```bash
 sudo apt install python3 python3-pip python3-venv
 ```
-Install tkinter for GUI development (useful for making labeling UIs).
-```bash
-sudo apt install python3-tk
-```
 
 ### Create and Activate a Python Virtual Environment
 Create a virtual environment named `pe` and activate it.
@@ -53,8 +49,21 @@ source pe/bin/activate
 ### Install Python Packages
 Install essential Python ML packages.
 ```bash
-pip install --upgrade numpy scipy pandas scikit-learn matplotlib seaborn torch openai tiktoken
+pip install --upgrade numpy scipy pandas scikit-learn matplotlib seaborn pillow torch openai
 ```
+Install OpenCV and tesseract OCR.
+```bash
+sudo apt-get install python3-opencv tesseract-ocr
+```
+Install other useful packages.
+```bash
+pip install tiktoken tqdm
+```
+Install tkinter for GUI development (useful for making labeling UIs).
+```bash
+sudo apt install python3-tk
+```
+
 ### Deactivate the Environment
 When you're done, deactivate the environment.
 ```bash
