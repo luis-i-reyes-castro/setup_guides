@@ -39,6 +39,10 @@ Install Python, Pip, and the `venv` module.
 ```bash
 sudo apt install python3 python3-pip python3-venv
 ```
+Install tkinter for GUI development (useful for making labeling UIs).
+```bash
+sudo apt install python3-tk
+```
 
 ### Create and Activate a Python Virtual Environment
 Create a virtual environment named `pe` and activate it.
