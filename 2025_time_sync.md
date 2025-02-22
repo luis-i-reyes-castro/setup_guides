@@ -89,3 +89,74 @@ This method forces Windows to synchronize time at a specified interval.
 
 By following these steps, your Windows 10 system will always have the correct time, even if your motherboard cannot retain it.
 
+# Automatic Time Synchronization on Ubuntu 24.04 Startup
+
+If your Ubuntu 24.04 system does not retain the correct time due to hardware issues, you can configure it to automatically synchronize with an internet time server at startup. This guide explains how to achieve this using `systemd-timesyncd`, the default time synchronization service in Ubuntu.
+
+---
+
+## **Method 1: Using systemd-timesyncd (Recommended)**
+Ubuntu 24.04 uses `systemd-timesyncd` by default for time synchronization. Follow these steps to ensure it syncs automatically at startup.
+
+### **1. Enable and Start the Time Sync Service**
+Open a terminal (`Ctrl + Alt + T`) and run:
+```bash
+sudo systemctl enable systemd-timesyncd
+sudo systemctl restart systemd-timesyncd
+```
+
+### **2. Verify the Current Time Sync Status**
+Check if your system is synchronizing time correctly:
+```bash
+timedatectl status
+```
+You should see output similar to:
+```
+System clock synchronized: yes
+NTP service: active
+```
+If **"System clock synchronized"** is **"no"**, enable NTP with:
+```bash
+sudo timedatectl set-ntp on
+```
+
+### **3. Force a Manual Time Sync at Startup (Optional)**
+To ensure time synchronization happens immediately at startup, create a systemd service.
+
+#### **A. Create a Systemd Service**
+1. Open a new service file:
+   ```bash
+   sudo nano /etc/systemd/system/force-timesync.service
+   ```
+2. Add the following content:
+   ```ini
+   [Unit]
+   Description=Force time synchronization at startup
+   After=network-online.target
+   Wants=network-online.target
+
+   [Service]
+   Type=oneshot
+   ExecStart=/bin/bash -c 'sleep 30 && systemctl restart systemd-timesyncd'
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+3. Save and exit (`Ctrl + X`, then `Y`, then `Enter`).
+
+#### **B. Enable the New Service**
+Run the following commands to apply the changes:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable force-timesync.service
+```
+Now, at every boot, the system will wait **30 seconds** (to ensure network connectivity) and then restart the time synchronization service.
+
+---
+
+## **Final Notes**
+- This method ensures that Ubuntu synchronizes the time correctly at startup.
+- If your system is not syncing properly, check for connectivity issues or try using `chrony` as an alternative solution.
+
+By following these steps, your Ubuntu 24.04 system will maintain accurate time automatically. 🚀
+
