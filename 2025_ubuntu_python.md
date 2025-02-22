@@ -13,6 +13,7 @@ sudo apt upgrade
 Grub Customizer allows you to customize the GRUB bootloader in case Ubuntu is sharing the disk with a Windows OS or macOS.
 ```bash
 sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+sudo apt update
 sudo apt install grub-customizer
 sudo grub-customizer
 ```
