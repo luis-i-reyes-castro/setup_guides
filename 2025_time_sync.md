@@ -89,6 +89,8 @@ This method forces Windows to synchronize time at a specified interval.
 
 By following these steps, your Windows 10 system will always have the correct time, even if your motherboard cannot retain it.
 
+---
+
 # Automatic Time Synchronization on Ubuntu 24.04 Startup
 
 If your Ubuntu 24.04 system does not retain the correct time due to hardware issues, you can configure it to automatically synchronize with an internet time server at startup. This guide explains how to achieve this using `systemd-timesyncd`, the default time synchronization service in Ubuntu.
