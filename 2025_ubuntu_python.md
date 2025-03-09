@@ -34,6 +34,11 @@ git config --global user.email "your.email@example.com"
 git config --global credential.helper store
 git config --global core.autocrlf input
 ```
+In addition, if you going to work with CSV files in a git repository, make sure to add a `.gitattributes` file to the repository with the following line:
+```
+*.csv text eol=lf
+```
+
 ## Set Up Python Environment
 
 ### Install Python and Pip
