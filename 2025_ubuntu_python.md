@@ -50,7 +50,7 @@ source pe/bin/activate
 ### Install Python Packages
 Install essential Python ML packages.
 ```bash
-pip install --upgrade numpy scipy pandas scikit-learn matplotlib seaborn pillow torch openai
+pip install --upgrade numpy scipy pandas scikit-learn matplotlib seaborn pillow torch openai mistralai langchain
 ```
 Install OpenCV and tesseract OCR.
 ```bash
