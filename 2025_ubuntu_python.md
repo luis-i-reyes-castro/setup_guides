@@ -56,7 +56,7 @@ source pe/bin/activate
 ### Install Python Packages
 Install essential Python ML packages.
 ```bash
-pip install --upgrade numpy scipy pandas scikit-learn matplotlib seaborn pillow torch openai mistralai langchain
+pip install --upgrade numpy scipy pandas scikit-learn matplotlib seaborn pillow torch
 ```
 Install OpenCV and tesseract OCR.
 ```bash
@@ -71,11 +71,9 @@ Install tkinter for GUI development (useful for making labeling UIs).
 ```bash
 sudo apt install python3-tk
 ```
-
-### Deactivate the Environment
-When you're done, deactivate the environment.
+Install popular LLM APIs.
 ```bash
-deactivate
+openai mistralai deepseek langchain langchain-community langchain-openai
 ```
 
 ### Automate Python Environment Activation
@@ -86,6 +84,13 @@ echo 'source ~/pe/bin/activate' >> ~/.bashrc
 Reload the .bashrc file to apply the changes.
 ```bash
 source ~/.bashrc
+```
+Alternatively, you may simply close and re-open the terminal.
+
+### Deactivate the Environment
+If for some reason you need to deactivate the environment, you can easily do it as follows.
+```bash
+deactivate
 ```
 
 ## Install Cursor
