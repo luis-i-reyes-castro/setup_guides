@@ -97,12 +97,12 @@ deactivate
 Cursor is a AI IDE that can be installed as an AppImage. It provides a significant productivity boost over non-AI IDEs.
 
 ### Download and Install Cursor
-Download the Cursor AppImage to the `/Downloads` directory and move it to /opt.
+Download the Cursor AppImage to the `/Downloads` directory and move it to `/opt`.
 ```bash
 sudo mv ~/Downloads/Cursor-X.Y.Z-x86_64.AppImage /opt/cursor
 sudo chmod +x /opt/cursor
 ```
-Note: Use the same procedure to *update* cursor.
+Note: Use the same procedure to *update* cursor. The only difference is that in this case you will not only be moving the new AppImage to `/opt/cursor`, but also overwriting the old AppImage.
 
 ### Download a Cursor Icon
 Download a cursor icon as `cursor-icon.png` to the `/Downloads` directory, create a directory for the icon (to avoid overwriting the app), and move it.
@@ -129,4 +129,13 @@ Save the file and make it executable.
 ```bash
 chmod +x ~/.local/share/applications/cursor.desktop
 update-desktop-database ~/.local/share/applications
+```
+### Fixes
+
+**Problem:** After updating Cursor you observe that it crashes while trying to load.
+
+**First solution attempt:** Clear the configuration files and cache:
+```bash
+rm -rfv ~/.config/Cursor/
+rm -rfv ~/.cache/cursor-updater/
 ```
