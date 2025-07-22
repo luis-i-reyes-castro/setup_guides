@@ -99,9 +99,10 @@ Cursor is a AI IDE that can be installed as an AppImage. It provides a significa
 ### Download and Install Cursor
 Download the Cursor AppImage to the `/Downloads` directory and move it to /opt.
 ```bash
-sudo mv ~/Downloads/cursor-0.45.11x86_64.AppImage /opt/cursor
+sudo mv ~/Downloads/Cursor-X.Y.Z-x86_64.AppImage /opt/cursor
 sudo chmod +x /opt/cursor
 ```
+Note: Use the same procedure to *update* cursor.
 
 ### Download a Cursor Icon
 Download a cursor icon as `cursor-icon.png` to the `/Downloads` directory, create a directory for the icon (to avoid overwriting the app), and move it.
