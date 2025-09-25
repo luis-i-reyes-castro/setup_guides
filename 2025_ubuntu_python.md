@@ -26,7 +26,6 @@ sudo apt update
 sudo apt install google-chrome-stable
 ```
 ### Install GIT
-Git is essential for version control.
 ```bash
 sudo apt install git
 git config --global user.name "Your Name"
@@ -39,64 +38,55 @@ In addition, if you going to work with CSV files in a git repository, make sure 
 *.csv text eol=lf
 ```
 
-## Set Up Python Environment
-
 ### Install Python and Pip
 Install Python, Pip, and the `venv` module.
 ```bash
 sudo apt install python3 python3-pip python3-venv
 ```
-
-### Create and Activate a Python Virtual Environment
 Create a virtual environment named `pe` and activate it.
 ```bash
 python3 -m venv pe
 source pe/bin/activate
 ```
-### Install Python Packages
-Install essential Python ML packages.
-```bash
-pip install --upgrade numpy scipy pandas scikit-learn matplotlib seaborn pillow torch
-```
-Install OpenCV and tesseract OCR.
-```bash
-sudo apt-get install python3-opencv tesseract-ocr
-pip install opencv-python pytesseract
-```
-Install other useful packages.
-```bash
-pip install tiktoken tqdm
-```
-Install tkinter for GUI development (useful for making labeling UIs).
-```bash
-sudo apt install python3-tk
-```
-Install popular LLM APIs.
-```bash
-openai mistralai deepseek langchain langchain-community langchain-openai
-```
-
-### Automate Python Environment Activation
-To automatically activate the `pe` environment when opening a terminal, add the activation command to your `.bashrc` file.
-```bash
-echo 'source ~/pe/bin/activate' >> ~/.bashrc
-```
-Reload the .bashrc file to apply the changes.
-```bash
-source ~/.bashrc
-```
-Alternatively, you may simply close and re-open the terminal.
-
-### Deactivate the Environment
 If for some reason you need to deactivate the environment, you can easily do it as follows.
 ```bash
 deactivate
 ```
 
-## Install Cursor
-Cursor is a AI IDE that can be installed as an AppImage. It provides a significant productivity boost over non-AI IDEs.
+### Install Python Packages
+Install essential Python ML packages:
+```bash
+pip install --upgrade numpy scipy pandas scikit-learn matplotlib seaborn pillow torch
+```
+Install OpenCV and tesseract OCR:
+```bash
+sudo apt-get install python3-opencv tesseract-ocr
+pip install opencv-python pytesseract
+```
+Install popular LLM APIs:
+```bash
+pip install --upgrade anthropic mistralai openai
+```
 
-### Download and Install Cursor
+### Other packages
+For counting tokens:
+```bash
+pip install --upgrade tiktoken
+```
+For progress bars:
+```bash
+pip install --upgrade tqdm
+```
+For GUI development (useful for making labeling apps): 
+```bash
+sudo apt install python3-tk
+```
+
+## Customize Shell
+* Copy [`.git-prompt.sh`](.git-prompt.sh) to your home folder (`~/`).
+* Append the code in [`.bashrc`](.bashrc) to your `~/.bashrc`.
+
+## Install Cursor
 Download the Cursor AppImage to the `/Downloads` directory and move it to `/opt`.
 ```bash
 sudo mv ~/Downloads/Cursor-X.Y.Z-x86_64.AppImage /opt/cursor
