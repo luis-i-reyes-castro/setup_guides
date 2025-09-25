@@ -12,7 +12,6 @@ brew cleanup
 ```
 
 ### Install GIT
-Git is essential for version control.
 ```bash
 brew install git
 git config --global user.name "Your Name"
@@ -25,61 +24,39 @@ In addition, if you going to work with CSV files in a git repository, make sure 
 *.csv text eol=lf
 ```
 
-## Set Up Python Environment
-
 ### Install Python and Pip
-Install Python, Pip, and the `venv` module.
 ```bash
 brew install python3
 ```
-Verify installation.
+To verify installation:
 ```bash
 python3 --version
 pip3 --version
 ```
 
-### Create and Activate a Python Virtual Environment
-Create a virtual environment named `pe` and activate it.
+Create a virtual environment named `pe` and activate it:
 ```bash
 python3 -m venv pe
 source pe/bin/activate
 ```
+If for some reason you need to deactivate the environment:
+```bash
+deactivate
+```
+
 ### Install Python Packages
 Install essential Python ML packages.
 ```bash
 pip install --upgrade numpy scipy pandas scikit-learn matplotlib seaborn pillow torch
 ```
-Install OpenCV and tesseract OCR.
-```bash
-sudo apt-get install python3-opencv tesseract-ocr
-pip install opencv-python pytesseract
-```
-Install other useful packages.
-```bash
-pip install tiktoken tqdm
-```
-Install tkinter for GUI development (useful for making labeling UIs).
-```bash
-sudo apt install python3-tk
-```
 Install popular LLM APIs.
 ```bash
-pip openai mistralai deepseek langchain langchain-community langchain-openai
+pip install --upgrade anthropic mistralai openai
 ```
 
-### Automate Python Environment Activation
-To automatically activate the `pe` environment when opening a terminal, add the activation command to your `.bashrc` file.
-```bash
-echo 'source ~/pe/bin/activate' >> ~/.zshrc
-```
-Reload the .bashrc file to apply the changes.
-```bash
-source ~/.bashrc
-```
-Alternatively, you may simply close and re-open the terminal.
+## Customize Shell
+Copy or append the code in [`.zshrc`](.zshrc) to your `~/.zshrc`.
 
-### Deactivate the Environment
-If for some reason you need to deactivate the environment, you can easily do it as follows.
-```bash
-deactivate
-```
+## Additional Resources
+* [MacOS Shortcuts](macos_shortcuts.md)
+* [MacOS Spanish Keyboard Symbols](macos_spanish.md)
