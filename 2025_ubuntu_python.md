@@ -81,6 +81,17 @@ For GUI development (useful for making labeling apps):
 ```bash
 sudo apt install python3-tk
 ```
+For finite state machines with visualization:
+```bash
+# Install core FSM library
+pip install --upgrade transitions
+# Install Graphviz runtime (for 'dot' command)
+sudo apt install -y graphviz
+# Install development headers (needed to build pygraphviz)
+sudo apt install -y libgraphviz-dev pkg-config build-essential
+# Build & install pygraphviz from source
+pip install --no-binary=:all: pygraphviz
+```
 
 ## Customize Shell
 * Copy [`.git-prompt.sh`](.git-prompt.sh) to your home folder (`~/`).
