@@ -1,4 +1,4 @@
-# 2019 Virtual Private Server (VPS) Setup Guide
+# 2019 Virtual Private Server (VPS) for ProcessMaker
 
 Follow this step-by-step guide to install ProcessMaker on a fresh machine. In this particular example we are using a VPS hosted by Digital Ocean at IPv4 address `XXX.XXX.XXX.XX` which responds to `example-server.tk`. 
 

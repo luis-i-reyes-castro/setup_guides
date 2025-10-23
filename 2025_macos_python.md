@@ -1,4 +1,4 @@
-# 2025 MacOS Python ML Dev Setup Guide
+# 2025 MacOS for Python
 This guide will help you set up your MacOS system. It installs Brew, GIT, a Python virtual environment, and some Python ML packages.
 
 ## Install Essential Tools

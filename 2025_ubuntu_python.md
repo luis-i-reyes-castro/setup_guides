@@ -1,4 +1,4 @@
-# 2025 Ubuntu Python ML Dev Setup Guide
+# 2025 Ubuntu for Python
 This guide will help you set up your Ubuntu 24.04 system. It assumes you are sharing the disk with a Windows or mac operating system, hence the inclusion of the `grub-customizer`. It installs Google Chrome, GIT, a Python virtual environment, some Python ML packages, and Cursor. It also includes steps to automate the activation of your Python environment.
 
 ## Update and Upgrade System
