@@ -61,6 +61,32 @@ Accept defaults (press Enter).
 
 ## 3. Copy SSH keys (passwordless login)
 
+### Get the local SSH names
+
+Each SSH target is `username@hostname.local`. Get these per machine:
+
+**macOS**
+```bash
+whoami
+scutil --get LocalHostName
+```
+Result format:
+```bash
+<user>@<LocalHostName>.local
+```
+
+**Ubuntu**
+```bash
+whoami
+hostname
+```
+Result format:
+```bash
+<user>@<hostname>.local
+```
+
+If `.local` does not resolve yet, use the machine's IP for this step and fix mDNS in Step 5.
+
 ### Ubuntu → macOS
 
 ```bash
