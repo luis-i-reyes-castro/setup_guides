@@ -6,7 +6,7 @@ The following guides are meant to help with setting up computers from scratch. I
 * [2018 Ubuntu for Deep Learning](2018_ubuntu_deep_learning.md)
 
 # Git Guides
-* [Commit Message Editing](git_edit_commit_message.md)
+* [Fixups for Cases Before and After Pushing](git_fixups.md)
 
 ### Contact
 You can email me at `luis.i.reyes.castro@gmail.com`. 

@@ -1,4 +1,6 @@
-# Git Commit Editing Guide
+# Git Fixup Guide
+
+# Before Pushing: Commit Editing
 
 ### Scenario
 * Had 3 local commits with a typo in the second commit message.
@@ -98,3 +100,38 @@ GIT_EDITOR=nano git rebase -i HEAD~3
 # Permanent change (add to ~/.bashrc or ~/.zshrc)
 export GIT_EDITOR=nano
 ```
+
+# After Pushing: Soft Reset and Push-force with Lease
+
+### Scenario
+* Last 3 commits were already pushed.
+* Needed to replace them with a single commit.
+
+### Commands Used
+
+```bash
+git reset --soft HEAD~3
+git commit -m "Docs: add local /docs chatbot examples and remove private repo references"
+git push --force-with-lease origin main
+```
+
+### What Each Command Does
+
+1. `git reset --soft HEAD~3`
+   - Moves `HEAD` back 3 commits.
+   - Keeps all changes from those commits staged.
+   - No file content is lost.
+
+2. `git commit -m "..."`
+   - Creates one new commit from the staged combined changes.
+
+3. `git push --force-with-lease origin main`
+   - Rewrites remote `main` to match your new local history.
+   - Safer than `--force`: it aborts if remote changed unexpectedly.
+
+### Note on Single-Developer Repos
+
+In a single-developer repo, plain `--force` can work and `--force-with-lease`
+may feel unnecessary. Still, `--force-with-lease` is usually recommended as a
+safe default because it protects you from accidentally overwriting remote
+changes (for example, commits made from another machine/session).
