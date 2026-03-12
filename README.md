@@ -6,6 +6,7 @@ The following guides are meant to help with setting up computers from scratch. I
 * [2018 Ubuntu for Deep Learning](2018_ubuntu_deep_learning.md)
 
 # Git Guides
+* [Branching](git_branching.md)
 * [Fixups for Cases Before and After Pushing](git_fixups.md)
 
 ### Contact
