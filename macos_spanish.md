@@ -1,4 +1,4 @@
-# MacOS Spanish Keyboard Symbols
+# MacOS EU Spanish Keyboard Symbols
 
 | Symbol | Symbol Name | Key Combinations |
 |--------|-------------|------------------|

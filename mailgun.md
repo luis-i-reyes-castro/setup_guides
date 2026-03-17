@@ -1,4 +1,4 @@
-# Mailgun Setup for Transactional Email (DigitalOcean + Namecheap)
+# Mailgun Setup for Transactional Email
 
 This guide configures **Mailgun** to send transactional emails from a DigitalOcean server when outbound SMTP is blocked.
 
@@ -24,11 +24,7 @@ Create an account at:
 https://www.mailgun.com
 ```
 
-Choose region:
-
-```
-EU (recommended for Europe)
-```
+Choose region: **US** or **EU**
 
 ---
 
@@ -39,7 +35,7 @@ Add a dedicated subdomain for transactional email.
 Example:
 
 ```
-mg.sofia-systems.lat
+mail.sofia-systems.com
 ```
 
 Using a subdomain keeps:
@@ -50,8 +46,8 @@ Using a subdomain keeps:
 Example sender addresses:
 
 ```
-facturacion@mg.sofia-systems.lat
-noreply@mg.sofia-systems.lat
+facturacion@mail.sofia-systems.com
+no-reply@mail.sofia-systems.com
 ```
 
 ---
@@ -72,8 +68,8 @@ Add:
 
 ```
 Type:  CNAME
-Host:  email.mg
-Value: mailgun.org
+Host:  email.mail
+Value: mailgun.org.
 TTL:   Automatic
 ```
 
@@ -81,8 +77,15 @@ TTL:   Automatic
 
 ```
 Type:  TXT
-Host:  k1._domainkey.mg
-Value: <long RSA key provided by Mailgun>
+Host:  pdk1._domainkey.mail
+Value: pdk1._domainkey...mgsend.org.
+TTL:   Automatic
+```
+
+```
+Type:  TXT
+Host:  pdk2._domainkey.mail
+Value: pdk2._domainkey...mgsend.org.
 TTL:   Automatic
 ```
 
@@ -90,7 +93,7 @@ TTL:   Automatic
 
 ```
 Type:  TXT
-Host:  mg
+Host:  mail
 Value: v=spf1 include:mailgun.org ~all
 TTL:   Automatic
 ```
@@ -105,7 +108,7 @@ Add:
 
 ```
 Type:     MX
-Host:     mg
+Host:     mail
 Value:    mxa.mailgun.org
 Priority: 10
 TTL:      Automatic
@@ -115,7 +118,7 @@ TTL:      Automatic
 
 ```
 Type:     MX
-Host:     mg
+Host:     mail
 Value:    mxb.mailgun.org
 Priority: 10
 TTL:      Automatic
@@ -124,37 +127,43 @@ TTL:      Automatic
 Important:
 
 ```
-Host must be "mg"
-NOT mg.sofia-systems.lat
+Host must be "mail"
+NOT mail.sofia-systems.com
 ```
 
 ---
 
 # 4. Wait for DNS Propagation
 
-Verify from a server:
+### Check host records:
 
+Command:
 ```bash
-dig mx mg.sofia-systems.lat +short
+dig [a|cname|txt] {$HOST}.sofia-systems.com +short
 ```
 
-Expected:
+**NOTE:** For the A Record with host `@` just run `dig a sofia-systems.com +short`.
 
+E.g.:
+```bash
+dig a sofia-systems.com +short
+dig cname email.mail.sofia-systems.com +short
+dig txt mail.sofia-systems.com +short
+```
+
+Expected output: `Value`
+
+### Check MX:
+
+Command:
+```bash
+dig mx mail.sofia-systems.com +short
+```
+
+Expected output:
 ```
 10 mxa.mailgun.org.
 10 mxb.mailgun.org.
-```
-
-Check SPF:
-
-```bash
-dig txt mg.sofia-systems.lat +short
-```
-
-Check DKIM:
-
-```bash
-dig txt k1._domainkey.mg.sofia-systems.lat +short
 ```
 
 ---
@@ -226,13 +235,13 @@ import os
 import requests
 
 MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY")
-DOMAIN = "mg.sofia-systems.lat"
+DOMAIN = "mail.sofia-systems.com"
 
 response = requests.post(
     f"https://api.eu.mailgun.net/v3/{DOMAIN}/messages",
     auth=("api", MAILGUN_API_KEY),
     data={
-        "from": f"Sofia Systems <noreply@{DOMAIN}>",
+        "from": f"Sofia Systems <no-reply@{DOMAIN}>",
         "to": ["user@example.com"],
         "subject": "Test email",
         "text": "Mailgun setup successful"
@@ -259,7 +268,7 @@ DNS record:
 ```
 Type:  TXT
 Host:  _dmarc
-Value: v=DMARC1; p=none; rua=mailto:admin@sofia-systems.lat
+Value: v=DMARC1; p=none; rua=mailto:admin@sofia-systems.com
 ```
 
 This improves deliverability.
