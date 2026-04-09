@@ -38,6 +38,20 @@ In addition, if you going to work with CSV files in a git repository, make sure 
 *.csv text eol=lf
 ```
 
+#### Updating Personal Access Token (classic)
+
+If your Personal Access Token (classic) expired then re-generate it and update it as follows:
+1. Wipe out the previous token:
+  ```bash
+  git config --global --unset-all credential.helper
+  git config --global credential.helper store
+  ```
+2. Go to any repo and run a `git pull`. Then re-insert your credentials:
+  ```bash
+  Username for 'https://github.com': username
+  Password for 'https://luis-i-reyes-castro@github.com': new_token
+  ```
+
 ### Install Python and Pip
 Install Python, Pip, and the `venv` module.
 ```bash
