@@ -41,6 +41,11 @@ Do not use the generic VSIX download. Use this:
 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/uniquevision/vsextensions/vscode-plpgsql-lsp/2.11.3/vspackage?targetPlatform=linux-x64
 ```
 
+For mac (arm64):
+```
+https://marketplace.visualstudio.com/_apis/public/gallery/publishers/uniquevision/vsextensions/vscode-plpgsql-lsp/2.11.3/vspackage?targetPlatform=darwin-arm64
+```
+
 The default Marketplace download may install a macOS ARM build, which produces:
 
 ```text
