@@ -1,35 +1,54 @@
-# PostgreSQL Language Server in Cursor (Linux) with psycopg Named Parameters
+# Supabase PostgreSQL Language Server in Cursor
 
-## Goal
+## Installation
 
-Enable:
+1. Lookup **`postgres-language-server`** in Cursor's Extensions Marketplace. It is published by Supabase.
+2. Install the extension.
+3. When prompted to install the missing language binary, accept and let Cursor install it.
 
-* SQL linting
-* Go To Definition
-* Find References
-* Hover documentation
+## Configuration
 
-for PostgreSQL code in Cursor, while supporting psycopg named parameters such as:
-
-```sql
-%(ruc)s
-%(codigo)s
-%(id_codigo)s
+```json
+// postgres-language-server.jsonc
+{
+  "$schema": "https://pg-language-server.com/latest/schema.json",
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "typecheck": {
+    "enabled": true
+  },
+  "files": {
+    "include": [
+      "/**/*.sql"
+    ],
+    "ignore": []
+  },
+  "format": {
+    "enabled": true,
+    "lineWidth": 92,
+    "indentSize": 2,
+    "indentStyle": "spaces",
+    "keywordCase": "upper",
+    "constantCase": "upper",
+    "typeCase": "upper"
+  },
+  "db": {
+    "connectionString": "postgres://<USER>:<PWD>@<DATABASE_URL>:5432/postgres?sslmode=require",
+    "connTimeoutSecs": 10,
+    "allowStatementExecutionsAgainst": [
+      "<DATABASE_URL>/*"
+    ]
+  }
+}
 ```
 
-## Problem
+# Generic PostgreSQL Language Server in Cursor
 
-The Supabase PostgreSQL Language Server works well for schema navigation but treats psycopg placeholders as syntax errors because they are not valid PostgreSQL syntax.
-
-The older `vscode-plpgsql-lsp` extension supports custom query parameter patterns, making it a better fit for SQL template files used by Python applications.
-
-## Environment
-
-* OS: Ubuntu Linux x86_64
-* IDE: Cursor
-* Database: Supabase PostgreSQL
-* Driver: psycopg3
-* SQL files stored in repository (e.g. `backend/sql/...`)
+For PostgreSQL databases hosted **outside Supabase**.
 
 ## Installation
 
@@ -118,28 +137,55 @@ Open Cursor Settings JSON and add:
 
 ```json
 {
-    "plpgsqlLanguageServer.queryParameterPattern":
-        "%\\([A-Za-z_][A-Za-z0-9_]*\\)s"
+  "files.associations": {
+    "*.sql": "postgres"
+  },
+  "[postgres]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+  },
+  "plpgsqlLanguageServer.definitionFiles": [
+    "*.sql",
+    "*.psql",
+    "*.pgsql",
+  ],
+  "plpgsqlLanguageServer.host": "<HOST>",
+  "plpgsqlLanguageServer.port": 5432,
+  "plpgsqlLanguageServer.database": "<DATABASE>",
+  "plpgsqlLanguageServer.user": "<USER>",
+  "plpgsqlLanguageServer.password": "<PWD>",
+  "plpgsqlLanguageServer.queryParameterPattern": "@[A-Za-z_][A-Za-z0-9_]*",
+  "plpgsqlLanguageServer.keywordQueryParameterPattern": [
+    "@{keyword}",
+  ],
+  "plpgsqlLanguageServer.enableExecuteFileQueryCommand": true,
+  "plpgsqlLanguageServer.workspaceValidationTargetFiles": [
+    "${env:HOME}/repository/**/*.sql"
+  ],
 }
 ```
 
 This tells the language server to recognize:
 
 ```sql
-%(ruc)s
-%(codigo)s
-%(search)s
-%(id_codigo)s
+@ruc
+@codigo
+@search
+@id_codigo
 ```
 
 as query parameters.
 
 ## Per-file configuration
 
-At the top of SQL template files, add:
-
+At the top of SQL template files with query parameters, add either
 ```sql
 /* plpgsql-language-server:use-query-parameter */
+```
+or
+```sql
+/* plpgsql-language-server:use-keyword-query-parameter */
 ```
 
 Example:
@@ -152,25 +198,13 @@ SELECT
 FROM
     customer
 WHERE
-    ruc = %(ruc)s;
+    ruc = @ruc;
 ```
 
-Without this comment, the language server may still report syntax errors on psycopg placeholders.
-
-## Verification
-
-Open a SQL file containing:
-
+For annoying files, disable the extension:
 ```sql
-%(ruc)s
+/* plpgsql-language-server:disable */
 ```
-
-Expected behavior:
-
-* No syntax errors on placeholders
-* Hover information works
-* Go To Definition works
-* Find References works (where supported)
 
 ## Troubleshooting
 
