@@ -38,7 +38,3 @@ zstyle ':completion:*:descriptions' format '%F{blue}-- %d --%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select
 compinit
-
-# Add alias to completely clear terminal (including scrollback)
-# Equivalent to Command + K
-alias cclear='clear && printf "\033[3J"'

@@ -9,9 +9,8 @@ This guide explains how to use **ngrok's free static dev domain** so your public
 
 Without this setup, ngrok assigns a **new random URL every time it starts**.
 
----
 
-# 1. Install ngrok
+## 1. Install ngrok
 
 Download and install from:
 
@@ -31,9 +30,8 @@ Example:
 ngrok version 3.37.1
 ```
 
----
 
-# 2. Authenticate ngrok
+## 2. Authenticate ngrok
 
 Log in to the dashboard and copy your **authtoken**:
 
@@ -53,9 +51,8 @@ This creates the config file:
 ~/.config/ngrok/ngrok.yml
 ```
 
----
 
-# 3. Find Your Free Static Domain
+## 3. Find Your Free Static Domain
 
 Open:
 
@@ -77,9 +74,8 @@ Important:
 * But **ngrok will NOT automatically use it**
 * You must explicitly bind tunnels to it
 
----
 
-# 4. Configure the Tunnel
+## 4. Configure the Tunnel
 
 Edit the ngrok config file:
 
@@ -111,9 +107,8 @@ Explanation:
 | `addr`    | local service port           |
 | `domain`  | reserved static ngrok domain |
 
----
 
-# 5. Start the Tunnel
+## 5. Start the Tunnel
 
 Run:
 
@@ -135,9 +130,8 @@ https://myographic-april-agrarianly.ngrok-free.dev
 
 This URL will remain **identical across restarts**.
 
----
 
-# 6. Verify Tunnel
+## 6. Verify Tunnel
 
 Open the local ngrok dashboard:
 
@@ -151,9 +145,8 @@ This allows you to:
 * replay requests
 * debug webhook payloads
 
----
 
-# 7. Why Random URLs Appear
+## 7. Why Random URLs Appear
 
 If you start ngrok like this:
 
@@ -173,9 +166,8 @@ These change every run.
 
 Using the **reserved domain** prevents this.
 
----
 
-# 8. Typical Workflow
+## 8. Typical Workflow
 
 Start local server:
 
@@ -201,9 +193,16 @@ Example webhook:
 https://myographic-april-agrarianly.ngrok-free.dev/webhook
 ```
 
----
 
-# 9. Notes
+## Configuration File Locations
+
+| OS  | Location |
+| --- | -------- |
+| **Ubuntu** | `~/.config/ngrok/ngrok.yml` |
+| **Mac**    | `~/Application\ Support/ngrok/ngrok.yml` |
+
+
+## 10. Notes
 
 Free tier limits include:
 
@@ -213,7 +212,6 @@ Free tier limits include:
 
 But it is sufficient for **local development and webhook testing**.
 
----
 
 # Quick Reference
 
