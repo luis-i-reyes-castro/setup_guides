@@ -60,56 +60,49 @@ git push origin dev
 
 We start by assuming you have been working on branch `dev`, which is now ahead of `main`. You have committed and pushed your good code to the `dev` branch and it is time to bring it to production.
 
-### Option 1: Update `dev` first (ensures clean integration)
-
-Update dev with latest main changes:
+Just in case, we start by updating both branches:
 ```bash
 git checkout dev
-git rebase main
+git pull origin dev
+git checkout main
+git pull origin main
 ```
 
-Switch to main and merge:
+### Option 1: Merge without Fast-Forward
+
+Merge `dev` into `main` without fast-forwarding to force a merge commit:
+```bash
+git checkout main
+git merge --no-ff dev
+```
+
+### Option 2: Rebase
+
+In case we need to rewrite history:
 ```bash
 git checkout main
 git merge dev
 ```
 
-### Option 2: Merge directly (simpler)
-
-Switch to main and ensure it's up to date:
-```bash
-# Switch to main and ensure it's up to date
-git checkout main
-git pull origin main
-```
-
-Merge `dev` into `main` according to team size:
-* If you are the only dev using the `dev` branch:
-  ```bash
-  git merge dev
-  ```
-* Else, if you are part of a team using the branch:
-  ```bash
-  git merge --no-ff main
-  ```
-
 ### Push to production and clean up
 
 ```bash
 git push origin main
+```
 
-# Optional: delete dev branch if no longer needed
+Finally, we have the option (but not the need) to delete dev branch:
+```bash
 git branch -d dev            # local
 git push origin --delete dev # remote
 ```
+
 ## Key Differences: Merge vs Rebase
 
 | Operation | Command | Effect | When to use |
 |-----------|---------|--------|-------------|
-| **Merge** | `git merge branch` | Creates merge commit, preserves history | Team branches, shared work |
-| **Rebase** | `git rebase branch` | Rewrites history, linear timeline | Local/solo branches before merging |
-| **Fast-forward** | `git merge --ff-only` | Only merges if no divergence | When you want linear history |
-| **No-fast-forward** | `git merge --no-ff` | Always creates merge commit | Team environments, feature branches |
+| **Merge with No-fast-forward** | `git merge <BRANCH> --no-ff` | Always creates merge commit | Team environments, feature branches |
+| **Merge with Fast-forward** | `git merge <BRANCH> --ff-only` | Only merges if no divergence | When you want linear history |
+| **Rebase** | `git rebase <BRANCH>` | Rewrites history, linear timeline | Local/solo branches before merging |
 
 ## Common Pitfalls to Avoid
 
