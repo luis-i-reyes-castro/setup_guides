@@ -1,6 +1,9 @@
 # Tab size (8 -> 4)
 tabs -4
 
+# Directory colors
+eval "$(dircolors ~/.dircolors)"
+
 # GIT
 # Setup colors
 blue="\[\033[0;34m\]"
@@ -21,3 +24,11 @@ source ~/.git-prompt.sh
 
 # PE: Python environment
 source ~/pe/bin/activate
+
+# Load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ]          && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# 3D Slicer
+alias slicer="$HOME/apps/Slicer-5.12.3-linux-amd64/Slicer"
