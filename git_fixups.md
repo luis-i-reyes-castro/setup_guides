@@ -135,3 +135,31 @@ In a single-developer repo, plain `--force` can work and `--force-with-lease`
 may feel unnecessary. Still, `--force-with-lease` is usually recommended as a
 safe default because it protects you from accidentally overwriting remote
 changes (for example, commits made from another machine/session).
+
+# After Pushing Secrets
+
+Say you put API credentials under `repo_root/path/to/secrets.txt`. To get rid of them throughout the commit history:
+
+First, get your repo clean of any changes. Then exit it, nuke it, and clone it again:
+```
+cd ~
+rm -rf repo_root
+git clone https://github.com/username/repo_root.git
+```
+
+Use `git-filter`:
+```bash
+pip install git-filter-repo
+cd repo_root
+git filter-repo --path path/to/secrets.txt --invert-paths
+```
+
+The operation will remove the `origin` URL so we need to re-enter it:
+```bash
+git remote add origin https://github.com/username/repo_root.git
+```
+
+Finally, push the sanitized commit history to the remote origin:
+```bash
+git push origin --force --all
+```
