@@ -18,6 +18,8 @@ The following guides are meant to help with setting up computers or droplets fro
 # Git
 * [Branching](git_branching.md)
 * [Fixups for Cases Before and After Pushing](git_fixups.md)
+* [Git Submodules](git_submodules.md)
+* [GitHub Credentials for Private Submodules](github_private_submodules.md)
 
 # Archive
 * [2019 Virtual Private Server (VPS) for ProcessMaker](2019_processmaker.md)
