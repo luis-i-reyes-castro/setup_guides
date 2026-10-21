@@ -9,6 +9,7 @@ The following guides are meant to help with setting up computers or droplets fro
   * [macOS EU Spanish Keyboard Symbols](macos_spanish.md)
 * [SSH + SCP Setup between Ubuntu and macOS in Home Network](ssh_scp_setup.md)
 * [Ngrok Fixed Domain](ngrok_fixed_domain.md)
+* [Google Drive Mounts with rclone](google_drive_rclone.md)
 
 ## Droplets
 * [SSL Certificate Acquisition](ssl_certificate.md)
